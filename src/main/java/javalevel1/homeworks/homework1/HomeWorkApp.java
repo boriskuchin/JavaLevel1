@@ -19,12 +19,12 @@ public class HomeWorkApp {
     }
 
     public static void checkSumSign() {
-        int varA = ThreadLocalRandom.current().nextInt(10) - 5;
-        int varB = ThreadLocalRandom.current().nextInt(10) - 5;
+        int a = ThreadLocalRandom.current().nextInt(10) - 5;
+        int b = ThreadLocalRandom.current().nextInt(10) - 5;
 
         System.out.println("----------checkSumSign()----------");
-        System.out.println("VarA = " + varA + ", " + "VarA = " + varB);
-        if ((varA + varB) >= 0) {
+        System.out.println("VarA = " + a + ", " + "VarA = " + b);
+        if ((a + b) >= 0) {
             System.out.println("Сумма положительная");
         } else {
             System.out.println("Сумма отрицательная");
@@ -54,7 +54,13 @@ public class HomeWorkApp {
         int varB = ThreadLocalRandom.current().nextInt(10) - 5;
 
         System.out.println("----------compareNumbers()----------");
-        System.out.println("VarA = " + varA + ", " + "VarA = " + varB);
+        System.out.println("a = " + varA + ", " + "b = " + varB);
+
+        if (varA >= varB) {
+            System.out.println("a >= b");
+        } else {
+            System.out.println("a < b");
+        }
     }
 
 
