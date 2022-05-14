@@ -1,4 +1,4 @@
-package Lesson1;
+package javalevel1.homeworks.homework1;
 
 import java.util.concurrent.ThreadLocalRandom;
 
