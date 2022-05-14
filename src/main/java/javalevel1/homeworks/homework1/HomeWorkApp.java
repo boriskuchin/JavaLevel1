@@ -23,7 +23,7 @@ public class HomeWorkApp {
         int b = ThreadLocalRandom.current().nextInt(10) - 5;
 
         System.out.println("----------checkSumSign()----------");
-        System.out.println("VarA = " + a + ", " + "VarA = " + b);
+        System.out.println("a = " + a + ", " + "b = " + b);
         if ((a + b) >= 0) {
             System.out.println("Сумма положительная");
         } else {
