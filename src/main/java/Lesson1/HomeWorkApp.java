@@ -1,6 +1,6 @@
 package Lesson1;
 
-public class MainClassForLessonOne {
+public class HomeWorkApp {
 
 
     public static void main(String[] args) {
