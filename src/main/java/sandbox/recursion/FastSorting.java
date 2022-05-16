@@ -7,8 +7,11 @@ import java.util.List;
 public class FastSorting {
     public static void main(String[] args) {
         ArrayList<Integer> a = new ArrayList<>(Arrays.asList(10, 1, 2, 2, 11, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, -9));
+        System.out.println(a.size());
 
         System.out.println(sort(a));
+        System.out.println(sort(a).size());
+
 
     }
 
@@ -26,7 +29,7 @@ public class FastSorting {
 
             for (Integer i : list) {
                 if (pos != pivot_position) {
-                    if (i < pivot) {
+                    if (i <= pivot) {
                         left.add(i);
                     } else {
                         right.add(i);
