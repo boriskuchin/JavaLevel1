@@ -10,6 +10,9 @@ public class HomeWork3 {
     public static void main(String[] args) {
         createBinaryArray();
         fillArray();
+        multiplyNumbersByTwo();
+        drawDiagonalMatrix();
+        System.out.println(Arrays.toString(createArray(10, 6)));
     }
 
     public static void createBinaryArray() {
@@ -48,4 +51,62 @@ public class HomeWork3 {
         System.out.printf("Результат: %s%n", Arrays.toString(array));
 
     }
+
+    public static void multiplyNumbersByTwo() {
+        /*3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ] пройти по нему циклом, и числа меньшие 6 умножить на 2;*/
+
+        System.out.println("---------------Задание 3---------------");
+
+        int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+
+        System.out.printf("Изходный массив:   %s %n", Arrays.toString(arr));
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < 6) {
+                arr[i] *= 2;
+            }
+        }
+
+        System.out.printf("Измененный массив: %s %n", Arrays.toString(arr));
+    }
+
+    public static void drawDiagonalMatrix() {
+        /*4. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое), и с помощью цикла(-ов)
+        заполнить его диагональные элементы единицами (можно только одну из диагоналей, если обе сложно). Определить элементы
+        одной из диагоналей можно по следующему принципу: индексы таких элементов равны, то есть [0][0], [1][1], [2][2], …, [n][n];*/
+
+        System.out.println("---------------Задание 4---------------");
+
+        int matrixSize = random.nextInt(10) + 5;
+
+        int[][] matrix = new int[matrixSize][matrixSize];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if ((i == j) || (i + j == matrixSize - 1)) {
+                    matrix[i][j] = 1;
+                } else {
+                    matrix[i][j] = 0;
+                }
+
+            }
+        }
+        for (int[] line : matrix) {
+            System.out.println(Arrays.toString(line));
+
+        }
+    }
+
+
+    public static int[] createArray(int len, int initialValue ) {
+        /*5. Написать метод, принимающий на вход два аргумента: len и initialValue, и возвращающий одномерный массив типа int длиной len, каждая ячейка которого равна initialValue;*/
+
+        System.out.println("---------------Задание 5---------------");
+
+        int[] array = new int[len];
+        Arrays.fill(array, initialValue);
+        return array;
+    }
+
+
 }
