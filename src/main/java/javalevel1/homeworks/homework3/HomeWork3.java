@@ -9,19 +9,27 @@ public class HomeWork3 {
     static Random random = new Random();
 
     public static void main(String[] args) {
+        System.out.println("---------------Задание 1---------------");
         createBinaryArray();
+        System.out.println("---------------Задание 2---------------");
         fillArray();
+        System.out.println("---------------Задание 3---------------");
         multiplyNumbersByTwo();
+        System.out.println("---------------Задание 4---------------");
         drawDiagonalMatrix();
+        System.out.println("---------------Задание 5---------------");
         System.out.println(Arrays.toString(createArray(10, 6)));
+        System.out.println("---------------Задание 6---------------");
         findMinMaxInArray();
+        System.out.println("---------------Задание 7---------------");
         System.out.println(isSumSymmetric(new int[]{2, 2, 2, 1, 2, 2, 10, 1}));
+        System.out.println("---------------Задание 8---------------");
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        shiftArray(array, -36);
     }
 
     public static void createBinaryArray() {
         /*1. Задать целочисленный массив, состоящий из элементов 0 и 1. Например: [ 1, 1, 0, 0, 1, 0, 1, 1, 0, 0 ]. С помощью цикла и условия заменить 0 на 1, 1 на 0;*/
-
-        System.out.println("---------------Задание 1---------------");
 
         // Создаем массив случайной длины и заполняем его слуяайными значениями
         int randomBoundary = 15;
@@ -44,8 +52,6 @@ public class HomeWork3 {
     public static void fillArray() {
         /*2. Задать пустой целочисленный массив длиной 100. С помощью цикла заполнить его значениями 1 2 3 4 5 6 7 8 … 100;*/
 
-        System.out.println("---------------Задание 2---------------");
-
         int[] array = new int[100];
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
@@ -57,8 +63,6 @@ public class HomeWork3 {
 
     public static void multiplyNumbersByTwo() {
         /*3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ] пройти по нему циклом, и числа меньшие 6 умножить на 2;*/
-
-        System.out.println("---------------Задание 3---------------");
 
         int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
 
@@ -77,8 +81,6 @@ public class HomeWork3 {
         /*4. Создать квадратный двумерный целочисленный массив (количество строк и столбцов одинаковое), и с помощью цикла(-ов)
         заполнить его диагональные элементы единицами (можно только одну из диагоналей, если обе сложно). Определить элементы
         одной из диагоналей можно по следующему принципу: индексы таких элементов равны, то есть [0][0], [1][1], [2][2], …, [n][n];*/
-
-        System.out.println("---------------Задание 4---------------");
 
         int matrixSize = random.nextInt(10) + 5;
 
@@ -103,8 +105,6 @@ public class HomeWork3 {
     public static int[] createArray(int len, int initialValue ) {
         /*5. Написать метод, принимающий на вход два аргумента: len и initialValue, и возвращающий одномерный массив типа int длиной len, каждая ячейка которого равна initialValue;*/
 
-        System.out.println("---------------Задание 5---------------");
-
         int[] array = new int[len];
         Arrays.fill(array, initialValue);
         return array;
@@ -113,7 +113,7 @@ public class HomeWork3 {
     public static void findMinMaxInArray() {
         /*6. * Задать одномерный массив и найти в нем минимальный и максимальный элементы ;*/
 
-        System.out.println("---------------Задание 6---------------");
+
 
         int maxValue = Integer.MIN_VALUE;
         int minValue = Integer.MAX_VALUE;
@@ -132,7 +132,7 @@ public class HomeWork3 {
     public static boolean isSumSymmetric(int[] array) {
         /*7. ** Написать метод, в который передается не пустой одномерный целочисленный массив, метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части массива равны.*/
 
-        System.out.println("---------------Задание 7---------------");
+
 
         System.out.printf("Заданный массив: %s %n", Arrays.toString(array));
 
@@ -164,13 +164,50 @@ public class HomeWork3 {
         return sum;
     }
 
-    public static void mm() {
+    public static void shiftArray(int[] array, int n) {
         /*8. *** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
         при этом метод должен сместить все элементы массива на n позиций. Элементы смещаются циклично. Для усложнения задачи нельзя
         пользоваться вспомогательными массивами.
-        Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ]; [ 3, 5, 6, 1] при n = -2 (на два влево) -> [ 6, 1, 3, 5 ].
+        Примеры:
+        [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ];
+        [ 3, 5, 6, 1] при n = -2 (на два влево) -> [ 6, 1, 3, 5 ].
+
         При каком n в какую сторону сдвиг можете выбирать сами.*/
 
-        
+        System.out.printf("Исходный массив: %s %n", Arrays.toString(array));
+
+        int timesToShift = Math.abs(n % array.length);
+        for (int i = 0; i < timesToShift; i++) {
+
+            if (n > 0) {
+                shiftByOnePosition(array, true);
+            } else {
+                shiftByOnePosition(array, false);
+            }
+        }
+        System.out.printf("Массив после смещения на n=%d позиций: %s %n",n, Arrays.toString(array));
+
+    }
+
+    public static void shiftByOnePosition(int[] array, boolean isRightMove) {
+        /*Смещение на 1 пизицию
+        * если isRightMove = true, то двигаемся вправо
+        * елси isRightMove = false, то двигаемся влево
+        * */
+
+        if (isRightMove) {
+            int tmp = array[array.length - 1];
+            for (int i = array.length - 1; i > 0; i--) {
+                array[i] = array[i - 1];
+            }
+            array[0] = tmp;
+        } else {
+            int tmp = array[0];
+            for (int i = 0; i < array.length-1; i++) {
+                array[i] = array[i + 1];
+            }
+            array[array.length-1] = tmp;
+        }
+
     }
 }
