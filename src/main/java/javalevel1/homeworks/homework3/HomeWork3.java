@@ -1,5 +1,6 @@
 package javalevel1.homeworks.homework3;
 
+import javax.sound.midi.Soundbank;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -13,6 +14,8 @@ public class HomeWork3 {
         multiplyNumbersByTwo();
         drawDiagonalMatrix();
         System.out.println(Arrays.toString(createArray(10, 6)));
+        findMinMaxInArray();
+        System.out.println(isSumSymmetric(new int[]{2, 2, 2, 1, 2, 2, 10, 1}));
     }
 
     public static void createBinaryArray() {
@@ -97,7 +100,6 @@ public class HomeWork3 {
         }
     }
 
-
     public static int[] createArray(int len, int initialValue ) {
         /*5. Написать метод, принимающий на вход два аргумента: len и initialValue, и возвращающий одномерный массив типа int длиной len, каждая ячейка которого равна initialValue;*/
 
@@ -108,5 +110,67 @@ public class HomeWork3 {
         return array;
     }
 
+    public static void findMinMaxInArray() {
+        /*6. * Задать одномерный массив и найти в нем минимальный и максимальный элементы ;*/
 
+        System.out.println("---------------Задание 6---------------");
+
+        int maxValue = Integer.MIN_VALUE;
+        int minValue = Integer.MAX_VALUE;
+
+        int[] array = new int[random.nextInt(10) + 10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(200) - 100;
+            if (array[i] > maxValue) maxValue = array[i];
+            if (array[i] < minValue) minValue = array[i];
+        }
+
+        System.out.printf("Массив: %s %n", Arrays.toString(array));
+        System.out.printf("Минимальное значение: %d, максимальное значение: %d %n", minValue, maxValue);
+    }
+
+    public static boolean isSumSymmetric(int[] array) {
+        /*7. ** Написать метод, в который передается не пустой одномерный целочисленный массив, метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части массива равны.*/
+
+        System.out.println("---------------Задание 7---------------");
+
+        System.out.printf("Заданный массив: %s %n", Arrays.toString(array));
+
+        boolean isFound = false;
+        for (int i = 0; i < array.length; i++) {
+            int leftSum = subArraySum(array, 0, i);
+            int rightSum = subArraySum(array, i, array.length);
+            if ( leftSum == rightSum) {
+                isFound = true;
+                System.out.printf("Точка симметрии суммы найдена. Слева и справа от позицции %d сумма массива равна %d %n", i, rightSum);
+
+            }
+        }
+
+        if (!isFound) {
+            System.out.printf("Точка симметрии суммы не найдена.%n");
+        }
+        return isFound;
+    }
+
+    public static int subArraySum(int[] array, int startPos, int endPos) {
+        /*Суммирует значение массива в диапазоне от startPos (включительно) до  endPos (не включительно) */
+
+        int sum = 0;
+
+        for (int i = startPos; i < endPos; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static void mm() {
+        /*8. *** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
+        при этом метод должен сместить все элементы массива на n позиций. Элементы смещаются циклично. Для усложнения задачи нельзя
+        пользоваться вспомогательными массивами.
+        Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ]; [ 3, 5, 6, 1] при n = -2 (на два влево) -> [ 6, 1, 3, 5 ].
+        При каком n в какую сторону сдвиг можете выбирать сами.*/
+
+        
+    }
 }
