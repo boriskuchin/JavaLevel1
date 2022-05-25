@@ -1,15 +1,18 @@
 package javalevel1.homeworks.homework4;
 
-import java.awt.image.ImageProducer;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
 
     private static final String EMPTY_FIELD = "•";
     private static final String HUMAN_FIELD = "X";
+    private static final String AI_FIELD = "0";
     private static final Scanner scanner = new Scanner(System.in);
     private static int size;
     private static String[][] map;
+    private static final Random random = new Random();
+    private static int blankFieldsCount;
 
     public static void main(String[] args) {
         init();
@@ -37,48 +40,77 @@ public class TicTacToe {
             }
 
         }
+        blankFieldsCount = size * size;
     }
 
     private static void printMap() {
         for (int i = 0; i < size + 1; i++) {
             System.out.printf("%3d", i);
         }
+
         System.out.println();
         for (int i = 0; i < size; i++) {
             System.out.printf("%3d", i + 1);
             for (int j = 0; j < size; j++) {
-
                 System.out.printf("%3s", map[i][j]);
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     private static void playGame() {
-        for (int i = 0; i < 9; i++) {
-            //ход человека
+
+        while (true) {
             humanTurn();
             printMap();
+            if (blankFieldsCount==0) {
+                break;
+            }
 
-            //проверка на конец игры
-            //ход компьютера
-            //отрисовать поле
-            //проверка на конец игры
-
+            AITurn();
+            printMap();
+            if (blankFieldsCount==0) {
+                break;
+            }
         }
+    }
 
+    private static void AITurn() {
+        int xField;
+        int yField;
+        do {
+            xField = random.nextInt(size);
+            yField = random.nextInt(size);
+        } while (!isFieldFree(xField, yField));
+
+        map[yField][xField] = AI_FIELD;
+        blankFieldsCount--;
     }
 
     private static void humanTurn() {
-        int xField = inputField("X");
-        int yField = inputField("Y");
+        int xField;
+        int yField;
 
+        do {
+            xField = inputField("X") - 1;
+            yField = inputField("Y") - 1;
+            if (!isFieldFree(xField, yField)) {
+                System.out.printf("Поле (%d,%d) уже занято. Выберите поле снова %n", xField + 1, yField + 1);
+            }
+        } while (!isFieldFree(xField, yField));
 
-        map[yField-1][xField-1] = HUMAN_FIELD;
+        map[yField][xField] = HUMAN_FIELD;
+        blankFieldsCount--;
 
     }
 
-    private static int  inputField(String coordinate) {
+    private static boolean isFieldFree(int xField, int yField) {
+        return map[yField][xField] == EMPTY_FIELD;
+
+    }
+
+    private static int inputField(String coordinate) {
         int field = 0;
         do {
             System.out.printf("Введите значение %s: ", coordinate);
@@ -92,11 +124,11 @@ public class TicTacToe {
         return field;
     }
 
-    public static boolean isSizeCorrect(int n) {
+    private static boolean isSizeCorrect(int n) {
         return n > 1;
     }
 
-    public static boolean isHumanInputCorrect(int field, int size) {
+    private static boolean isHumanInputCorrect(int field, int size) {
         if (field > 0 && field <= size) {
             return true;
         } else {
@@ -106,4 +138,5 @@ public class TicTacToe {
 
     }
 
+    private 
 }
