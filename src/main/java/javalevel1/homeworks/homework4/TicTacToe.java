@@ -13,11 +13,22 @@ public class TicTacToe {
     private static String[][] map;
     private static final Random random = new Random();
     private static int blankFieldsCount;
+    private static int countToWin;
+    private static int lastTurnLine;
+    private static int lastTurnColl;
+
 
     public static void main(String[] args) {
         init();
         printMap();
         playGame();
+        endGame();
+
+    }
+
+    private static void endGame() {
+        scanner.close();
+        System.out.println("До скорых встреч!");
     }
 
     private static void init() {
@@ -41,6 +52,20 @@ public class TicTacToe {
 
         }
         blankFieldsCount = size * size;
+
+        do {
+            System.out.print("Введите количество ходов в 1 ряд для победы: ");
+            if (scanner.hasNextInt()) {
+                countToWin = scanner.nextInt();
+                if (!((countToWin >= 2) && (countToWin <= size))) {
+                    System.out.println("Необходимо ввести целое число больше или равно 2 и меньше или равно " + size);
+                }
+            } else {
+                System.out.println("Необходимо ввести целое число больше или равно 2 и меньше или равно " + size);
+                scanner.next();
+            }
+        } while (!((countToWin >=2) && (countToWin <=size)));
+
     }
 
     private static void printMap() {
@@ -64,13 +89,23 @@ public class TicTacToe {
         while (true) {
             humanTurn();
             printMap();
+            if (checkWin(countToWin, HUMAN_FIELD)) {
+                System.out.println("ПВы победили. Поздравляю!");
+                break;
+            }
             if (blankFieldsCount==0) {
+                System.out.println("Ничья!");
                 break;
             }
 
             AITurn();
             printMap();
+            if (checkWin(countToWin, AI_FIELD)) {
+                System.out.println("Компьютер выйграл");
+                break;
+            }
             if (blankFieldsCount==0) {
+                System.out.println("Ничья!");
                 break;
             }
         }
@@ -86,6 +121,8 @@ public class TicTacToe {
 
         map[yField][xField] = AI_FIELD;
         blankFieldsCount--;
+        lastTurnLine = yField;
+        lastTurnColl = xField;
     }
 
     private static void humanTurn() {
@@ -102,6 +139,8 @@ public class TicTacToe {
 
         map[yField][xField] = HUMAN_FIELD;
         blankFieldsCount--;
+        lastTurnLine = yField;
+        lastTurnColl = xField;
 
     }
 
@@ -138,5 +177,87 @@ public class TicTacToe {
 
     }
 
-    private 
+    private static String[][] getArraysToCheckWins(int line, int coll) {
+        String[][] arrays = new String[4][];
+
+        //Смотрим вертикать
+        arrays[0] = new String[size];
+        for (int i = 0; i < size; i++) {
+            arrays[0][i] = map[i][coll];
+        }
+
+        //смотрим горизонталь
+        arrays[1] = new String[size];
+        for (int i = 0; i < size; i++) {
+            arrays[1][i] = map[line][i];
+        }
+
+        //собираем диагонали
+
+        int startLine = 0;
+        int startColl = 0;
+
+        //ищем начало первой диагонали
+        for (int i = 0; (line - i) >=0 && (coll - i) >=0; i++) {
+            startColl = coll - i;
+            startLine = line - i;
+        }
+        //инициализируем массив для первой диагонали
+        arrays[2] = new String[size - max(startColl, startLine)];
+
+        //заполняем диагональ
+        for (int i = 0; i < arrays[2].length; i++) {
+            arrays[2][i] = map[startLine + i][startColl + i];
+        }
+
+        //ищем начало второй диагонали
+        for (int i = 0; ((line + i) <=size-1) && (coll - i) >=0; i++) {
+            startColl = coll - i;
+            startLine = line + i;
+        }
+        //инициализируем массив для второй диагонали
+        if (startColl == 0) {
+            arrays[3] = new String[startLine + 1];
+        } else {
+            arrays[3] = new String[size - startColl];
+        }
+        //заполняем диагональ
+        for (int i = 0; i< arrays[3].length; i++) {
+            arrays[3][i] = map[startLine - i][startColl + i];
+        }
+
+        return arrays;
+
+        }
+
+    private static int max(int startColl, int startLine) {
+        return startColl > startLine ? startColl : startLine;
+    }
+
+    private static boolean checkWin(int countToWin, String sign) {
+        String[][] arraysToCheckWin = getArraysToCheckWins(lastTurnLine, lastTurnColl);
+
+        int countSigns;
+        boolean result = false;
+
+        for (String[] line : arraysToCheckWin) {
+            countSigns = 0;
+
+            if (line.length < countToWin) {
+                continue;
+            } else {
+                for (String ch : line) {
+                    if (ch.equals(sign)) {
+                        countSigns++;
+                        if (countSigns == countToWin) {
+                            result = true;
+                        }
+                    } else {
+                        countSigns = 0;
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }
