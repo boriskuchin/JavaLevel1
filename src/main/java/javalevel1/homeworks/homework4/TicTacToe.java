@@ -19,9 +19,22 @@ public class TicTacToe {
 
 
     public static void main(String[] args) {
-        init();
-        printMap();
-        playGame();
+        boolean isContinued = false;
+        do {
+
+            init();
+            printMap();
+            playGame();
+            System.out.print("Повторить игру? (y/n) ");
+            String toContinue = scanner.next();
+
+            if ((toContinue.equals("y") || toContinue.equals("yes") || toContinue.equals("да") || toContinue.equals("ага"))) {
+                isContinued = true;
+            } else {
+                isContinued = false;
+            }
+        } while (isContinued);
+
         endGame();
     }
 
@@ -78,9 +91,8 @@ public class TicTacToe {
     }
 
     private static void playGame() {
-        boolean isContinued = true;
-        do {
-            while (true) {
+
+        while (true) {
                 humanTurn();
                 printMap();
                 if (checkWin(countToWin, HUMAN_FIELD)) {
@@ -103,14 +115,6 @@ public class TicTacToe {
                     break;
                 }
             }
-
-            System.out.print("Повторить игру? (y/n) ");
-            String toContinue = scanner.nextLine();
-            if (!(toContinue.equals("y") || toContinue.equals("yes") || toContinue.equals("да") || toContinue.equals("ага"))) {
-                isContinued = false;
-            }
-        } while (isContinued);
-
     }
 
     private static void AITurn() {
