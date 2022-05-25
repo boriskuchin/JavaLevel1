@@ -23,12 +23,6 @@ public class TicTacToe {
         printMap();
         playGame();
         endGame();
-
-    }
-
-    private static void endGame() {
-        scanner.close();
-        System.out.println("До скорых встреч!");
     }
 
     private static void init() {
@@ -65,7 +59,6 @@ public class TicTacToe {
                 scanner.next();
             }
         } while (!((countToWin >=2) && (countToWin <=size)));
-
     }
 
     private static void printMap() {
@@ -85,30 +78,39 @@ public class TicTacToe {
     }
 
     private static void playGame() {
+        boolean isContinued = true;
+        do {
+            while (true) {
+                humanTurn();
+                printMap();
+                if (checkWin(countToWin, HUMAN_FIELD)) {
+                    System.out.println("Вы победили. Поздравляю!");
+                    break;
+                }
+                if (blankFieldsCount == 0) {
+                    System.out.println("Ничья!");
+                    break;
+                }
 
-        while (true) {
-            humanTurn();
-            printMap();
-            if (checkWin(countToWin, HUMAN_FIELD)) {
-                System.out.println("ПВы победили. Поздравляю!");
-                break;
-            }
-            if (blankFieldsCount==0) {
-                System.out.println("Ничья!");
-                break;
+                AITurn();
+                printMap();
+                if (checkWin(countToWin, AI_FIELD)) {
+                    System.out.println("Компьютер выйграл");
+                    break;
+                }
+                if (blankFieldsCount == 0) {
+                    System.out.println("Ничья!");
+                    break;
+                }
             }
 
-            AITurn();
-            printMap();
-            if (checkWin(countToWin, AI_FIELD)) {
-                System.out.println("Компьютер выйграл");
-                break;
+            System.out.print("Повторить игру? (y/n) ");
+            String toContinue = scanner.nextLine();
+            if (!(toContinue.equals("y") || toContinue.equals("yes") || toContinue.equals("да") || toContinue.equals("ага"))) {
+                isContinued = false;
             }
-            if (blankFieldsCount==0) {
-                System.out.println("Ничья!");
-                break;
-            }
-        }
+        } while (isContinued);
+
     }
 
     private static void AITurn() {
@@ -228,7 +230,7 @@ public class TicTacToe {
 
         return arrays;
 
-        }
+    }
 
     private static int max(int startColl, int startLine) {
         return startColl > startLine ? startColl : startLine;
@@ -240,12 +242,14 @@ public class TicTacToe {
         int countSigns;
         boolean result = false;
 
+        //перебираем каждую строку с комбинациями
         for (String[] line : arraysToCheckWin) {
             countSigns = 0;
-
+            //если длина диагонали меньще необходимой длины ходов, то игнорируем
             if (line.length < countToWin) {
                 continue;
             } else {
+                //считаем сколько подняд идет нужных знаков
                 for (String ch : line) {
                     if (ch.equals(sign)) {
                         countSigns++;
@@ -259,5 +263,10 @@ public class TicTacToe {
             }
         }
         return result;
+    }
+
+    private static void endGame() {
+        scanner.close();
+        System.out.println("До скорых встреч!");
     }
 }
