@@ -42,8 +42,6 @@ public class Solution {
         int[] tempArray = Arrays.copyOf(nums, nums.length);
         Arrays.sort(tempArray);
 
-        System.out.printf("array %s ", Arrays.toString(nums));
-
         for (int i = 0; i < tempArray.length; i++) {
 
             secondIndex = Arrays.binarySearch(tempArray, target - tempArray[i]);
@@ -57,18 +55,16 @@ public class Solution {
         }
 
         boolean isFirstFound = false;
-        boolean isSecondFound = false;
+
         for (int i = 0; i < nums.length; i++) {
             if ((nums[i] == first) && !isFirstFound) {
                 firstIndex = i;
                 isFirstFound = true;
                 continue;
-            } else if (nums[i] == second & !isSecondFound) {
+            } else if (nums[i] == second ) {
                 secondIndex = i;
-                isSecondFound = true;
+
                 continue;
-            } else if (isFirstFound && isSecondFound) {
-                break;
             }
         }
         return new int[]{firstIndex, secondIndex};
