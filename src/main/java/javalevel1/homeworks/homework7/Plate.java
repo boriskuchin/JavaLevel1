@@ -14,8 +14,8 @@ public class Plate {
 
     }
     public void decreaseFood(int decreasedFood) {
-        if (decreasedFood <= this.foodAvailable) {
-            this.foodAvailable -= decreasedFood;
+        if (decreasedFood <= foodAvailable) {
+            foodAvailable -= decreasedFood;
         }
     }
 
@@ -23,6 +23,7 @@ public class Plate {
         foodAvailable += additionalFoodCount;
         System.out.printf("В тарелку добавили %d еды", additionalFoodCount);
     }
+    
     @Override
     public String toString() {
         return "В тарелке осталось " + foodAvailable + " еды.";
