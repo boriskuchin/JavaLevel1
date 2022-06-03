@@ -24,6 +24,7 @@ public class Plate {
         System.out.printf("В тарелку добавили %d еды", additionalFoodCount);
     }
     
+
     @Override
     public String toString() {
         return "В тарелке осталось " + foodAvailable + " еды.";
