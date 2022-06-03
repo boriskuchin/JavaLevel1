@@ -23,6 +23,7 @@ public class Plate {
         foodAvailable += additionalFoodCount;
         System.out.printf("В тарелку добавили %d еды", additionalFoodCount);
     }
+    
 
     @Override
     public String toString() {
