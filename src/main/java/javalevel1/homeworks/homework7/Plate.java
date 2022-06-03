@@ -14,11 +14,9 @@ public class Plate {
 
     }
     public void decreaseFood(int decreasedFood) {
-
         if (decreasedFood <= this.foodAvailable) {
             this.foodAvailable -= decreasedFood;
         }
-
     }
 
     public void addFood(int additionalFoodCount) {
