@@ -16,6 +16,18 @@ public class CalculatorApplication extends JFrame {
     private int firstOperand;
     private String operator;
 
+    public CalculatorApplication(){
+        super();
+        this.setTitle("Калькулятор v 0.1");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setBounds(100, 100, 320, 400);
+        this.add(createDisplayPanel(), BorderLayout.NORTH);
+        this.add(createDigitsPanel(), BorderLayout.CENTER);
+        this.add(createOperatorPanel(), BorderLayout.WEST);
+        this.setVisible(true);
+
+    }
+
     public void setDisplayTextField(String displayText) {
         this.displayTextField.setText(displayText);
     }
@@ -30,18 +42,6 @@ public class CalculatorApplication extends JFrame {
 
     public void setOperator(String operator) {
         this.operator = operator;
-    }
-
-    public CalculatorApplication(){
-        super();
-        this.setTitle("Калькулятор v 0.1");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setBounds(100, 100, 320, 400);
-        this.add(createDisplayPanel(), BorderLayout.NORTH);
-        this.add(createDigitsPanel(), BorderLayout.CENTER);
-        this.add(createOperatorPanel(), BorderLayout.WEST);
-        this.setVisible(true);
-
     }
 
     private JPanel createDisplayPanel() {
@@ -91,7 +91,7 @@ public class CalculatorApplication extends JFrame {
 
         for (int i = 1; i < 10; i++) {
             JButton button = new MyJButton(String.valueOf(i));
-            button.addActionListener(new DigitsButtonListener(displayTextField));
+            button.addActionListener(new DigitsButtonListener(this));
             numberPanel.add(button);
         }
 
@@ -100,7 +100,7 @@ public class CalculatorApplication extends JFrame {
         numberPanel.add(clearButton);
 
         JButton zeroButton = new MyJButton("0");
-        zeroButton.addActionListener(new DigitsButtonListener(displayTextField));
+        zeroButton.addActionListener(new DigitsButtonListener(this));
         numberPanel.add(zeroButton);
 
         JButton equalButton = new MyJButton("=");
