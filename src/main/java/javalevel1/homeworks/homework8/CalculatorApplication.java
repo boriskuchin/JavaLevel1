@@ -4,17 +4,32 @@ import javalevel1.homeworks.homework8.components.MyJButton;
 import javalevel1.homeworks.homework8.components.MyJTextField;
 import javalevel1.homeworks.homework8.listeners.DigitsButtonListener;
 import javalevel1.homeworks.homework8.listeners.ClearButtonLestener;
+import javalevel1.homeworks.homework8.listeners.OperatorButtonListener;
+import javalevel1.homeworks.homework8.listeners.ResultButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class CalculatorApplication extends JFrame {
 
-    JTextField displayText;
+    private JTextField displayTextField;
+    private int firstOperand;
+    private String operator;
 
-    public void setDisplayText(String displayText) {
-        this.displayText.setText(displayText);
+    public void setDisplayTextField(String displayText) {
+        this.displayTextField.setText(displayText);
+    }
 
+    public JTextField getDisplayTextField() {
+        return displayTextField;
+    }
+
+    public void setFirstOperand(int firstOperand) {
+        this.firstOperand = firstOperand;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public CalculatorApplication(){
@@ -33,10 +48,18 @@ public class CalculatorApplication extends JFrame {
         JPanel displayPanel = new JPanel();
         displayPanel.setLayout(new GridLayout(1,1));
 
-        displayText = new MyJTextField();
-        displayPanel.add(displayText);
+        displayTextField = new MyJTextField();
+        displayPanel.add(displayTextField);
 
         return displayPanel;
+    }
+
+    public int getFirstOperand() {
+        return firstOperand;
+    }
+
+    public String getOperator() {
+        return operator;
     }
 
     private JPanel createOperatorPanel() {
@@ -46,6 +69,11 @@ public class CalculatorApplication extends JFrame {
         JButton minusBotton = new MyJButton("-");
         JButton myltiplyBotton = new MyJButton("*");
         JButton devisionBotton = new MyJButton("/");
+
+        plusBotton.addActionListener(new OperatorButtonListener(this));
+        minusBotton.addActionListener(new OperatorButtonListener(this));
+        myltiplyBotton.addActionListener(new OperatorButtonListener(this));
+        devisionBotton.addActionListener(new OperatorButtonListener(this));
 
         operatorPanel.add(plusBotton);
         operatorPanel.add(minusBotton);
@@ -63,19 +91,21 @@ public class CalculatorApplication extends JFrame {
 
         for (int i = 1; i < 10; i++) {
             JButton button = new MyJButton(String.valueOf(i));
-            button.addActionListener(new DigitsButtonListener(displayText));
+            button.addActionListener(new DigitsButtonListener(displayTextField));
             numberPanel.add(button);
         }
 
         JButton clearButton = new MyJButton("AC");
-        clearButton.addActionListener(new ClearButtonLestener(displayText));
+        clearButton.addActionListener(new ClearButtonLestener(displayTextField));
         numberPanel.add(clearButton);
 
         JButton zeroButton = new MyJButton("0");
-        zeroButton.addActionListener(new DigitsButtonListener(displayText));
+        zeroButton.addActionListener(new DigitsButtonListener(displayTextField));
         numberPanel.add(zeroButton);
 
         JButton equalButton = new MyJButton("=");
+        equalButton.addActionListener(new ResultButtonListener(this));
+
         numberPanel.add(equalButton);
 
         return numberPanel;
