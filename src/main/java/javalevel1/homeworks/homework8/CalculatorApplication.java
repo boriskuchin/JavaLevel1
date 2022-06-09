@@ -9,9 +9,16 @@ import java.awt.*;
 
 public class CalculatorApplication extends JFrame {
 
-    private JTextField displayTextField;
-    private int firstOperand;
-    private String operator;
+    private JTextField displayResultField;
+    private Integer firstOperand = null;
+    private Integer secondOperand = null;
+    private String operator = "";
+    private boolean isNewNumber = true;
+    private JTextField displayFormulaField;
+
+    public void setDisplayFormulaField(String text) {
+        this.displayFormulaField.setText(text);
+    }
 
     public CalculatorApplication(){
         super();
@@ -25,38 +32,50 @@ public class CalculatorApplication extends JFrame {
 
     }
 
-    public void setDisplayTextField(String displayText) {
-        this.displayTextField.setText(displayText);
+
+    public void setSecondOperand(Integer secondOperand) {
+        this.secondOperand = secondOperand;
     }
 
-    public JTextField getDisplayTextField() {
-        return displayTextField;
+    public Integer getSecondOperand() {
+        return secondOperand;
     }
 
-    public void setFirstOperand(int firstOperand) {
-        this.firstOperand = firstOperand;
+
+    public void setDisplayResultField(String displayText) {
+        this.displayResultField.setText(displayText);
     }
+
+    public JTextField getDisplayResultField() {
+        return displayResultField;
+    }
+
 
     public void setOperator(String operator) {
         this.operator = operator;
     }
 
-    private JPanel createDisplayPanel() {
-        JPanel displayPanel = new JPanel();
-        displayPanel.setLayout(new GridLayout(1,1));
-
-        displayTextField = new MyJTextField();
-        displayPanel.add(displayTextField);
-
-        return displayPanel;
+    public String getOperator() {
+        return operator;
     }
 
-    public int getFirstOperand() {
+
+
+    public void setFirstOperand(Integer firstOperand) {
+        this.firstOperand = firstOperand;
+    }
+
+    public Integer getFirstOperand() {
         return firstOperand;
     }
 
-    public String getOperator() {
-        return operator;
+
+    public boolean getIsNewNumber() {
+        return this.isNewNumber;
+    }
+
+    public void setIsNewNumber(boolean isNewNumber) {
+        this.isNewNumber = isNewNumber;
     }
 
     private JPanel createOperatorPanel() {
@@ -80,6 +99,22 @@ public class CalculatorApplication extends JFrame {
         return operatorPanel;
     }
 
+    private JPanel createDisplayPanel() {
+        JPanel displayPanel = new JPanel();
+        displayPanel.setLayout(new GridLayout(2,1));
+
+        displayFormulaField = new JTextField();
+        displayFormulaField.setEditable(false);
+
+        displayResultField = new MyJTextField();
+
+
+        displayPanel.add(displayFormulaField);
+        displayPanel.add(displayResultField);
+
+        return displayPanel;
+    }
+
     private JPanel createDigitsPanel() {
 
         JPanel numberPanel = new JPanel();
@@ -93,7 +128,7 @@ public class CalculatorApplication extends JFrame {
         }
 
         JButton clearButton = new MyJButton("AC");
-        clearButton.addActionListener(new ClearButtonLestener(displayTextField));
+        clearButton.addActionListener(new ClearButtonListener(this));
         numberPanel.add(clearButton);
 
         JButton zeroButton = new MyJButton("0");

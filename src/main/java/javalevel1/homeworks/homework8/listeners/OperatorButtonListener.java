@@ -16,10 +16,13 @@ public class OperatorButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayTextField().getText()));
-        JButton btn = (JButton) actionEvent.getSource();
-        calculatorApplication.setOperator(btn.getText());
-        calculatorApplication.setDisplayTextField("");
-
+        if (calculatorApplication.getFirstOperand() == null) {
+            calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
+            JButton btn = (JButton) actionEvent.getSource();
+            calculatorApplication.setOperator(btn.getText());
+            calculatorApplication.setIsNewNumber(true);
+        } else {
+            // присвоить второму числу то. что на кране и выполнить вычисления
+        }
     }
 }

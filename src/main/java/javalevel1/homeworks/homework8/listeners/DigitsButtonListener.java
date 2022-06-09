@@ -17,7 +17,14 @@ public class DigitsButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        JButton button = (JButton) actionEvent.getSource();
-        calculatorApplication.setDisplayTextField(calculatorApplication.getDisplayTextField().getText() + button.getText());
+        if (calculatorApplication.getIsNewNumber()) {
+            calculatorApplication.setDisplayResultField("");
+            calculatorApplication.setIsNewNumber(false);
+            JButton button = (JButton) actionEvent.getSource();
+            calculatorApplication.setDisplayResultField(calculatorApplication.getDisplayResultField().getText() + button.getText());
+        } else {
+            JButton button = (JButton) actionEvent.getSource();
+            calculatorApplication.setDisplayResultField(calculatorApplication.getDisplayResultField().getText() + button.getText());
+        }
     }
 }

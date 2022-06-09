@@ -15,22 +15,36 @@ public class ResultButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        int result = 0;
-        switch (calculatorApplication.getOperator()) {
-            case "+":
-                result = calculatorApplication.getFirstOperand() + Integer.parseInt(calculatorApplication.getDisplayTextField().getText());
-                break;
-            case "-":
-                result = calculatorApplication.getFirstOperand() - Integer.parseInt(calculatorApplication.getDisplayTextField().getText());
-                break;
-            case "*":
-                result = calculatorApplication.getFirstOperand() * Integer.parseInt(calculatorApplication.getDisplayTextField().getText());
-                break;
-            case "/":
-                result = calculatorApplication.getFirstOperand() / Integer.parseInt(calculatorApplication.getDisplayTextField().getText());
-                break;
+        calculatorApplication.setIsNewNumber(true);
+
+        if (!calculatorApplication.getDisplayResultField().getText().equals("")) {
+            calculatorApplication.setSecondOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
         }
 
-        calculatorApplication.setDisplayTextField(String.valueOf(result));
+        if (!(calculatorApplication.getOperator().equals("")) && calculatorApplication.getSecondOperand() != null) {
+
+            int result = 0;
+            switch (calculatorApplication.getOperator()) {
+                case "+":
+                    result = calculatorApplication.getFirstOperand() + calculatorApplication.getSecondOperand();
+                    break;
+                case "-":
+                    result = calculatorApplication.getFirstOperand() - calculatorApplication.getSecondOperand();
+                    break;
+                case "*":
+                    result = calculatorApplication.getFirstOperand() * calculatorApplication.getSecondOperand();
+                    break;
+                case "/":
+                    result = calculatorApplication.getFirstOperand() / calculatorApplication.getSecondOperand();
+                    break;
+            }
+
+            calculatorApplication.setDisplayFormulaField(String.format("%s %s %s = ", calculatorApplication.getFirstOperand(), calculatorApplication.getOperator(), calculatorApplication.getSecondOperand()));
+
+
+            calculatorApplication.setDisplayResultField(String.valueOf(result));
+        }
+
+
     }
 }
