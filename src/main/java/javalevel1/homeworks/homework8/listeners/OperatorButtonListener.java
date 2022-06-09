@@ -17,7 +17,7 @@ public class OperatorButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
-        if (calculatorApplication.getFirstOperand() == null) {
+        if (calculatorApplication.getFirstOperand() == null || calculatorApplication.getOperator().equals("")) {
             calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
             JButton btn = (JButton) actionEvent.getSource();
             calculatorApplication.setOperator(btn.getText());

@@ -41,6 +41,7 @@ public class ResultButtonListener implements ActionListener {
 
             calculatorApplication.setDisplayFormulaField(String.format("%s %s %s = ", calculatorApplication.getFirstOperand(), calculatorApplication.getOperator(), calculatorApplication.getSecondOperand()));
 
+            calculatorApplication.setOperator("");
 
             calculatorApplication.setDisplayResultField(String.valueOf(result));
         }
