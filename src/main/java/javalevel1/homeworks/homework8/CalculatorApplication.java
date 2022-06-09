@@ -2,10 +2,7 @@ package javalevel1.homeworks.homework8;
 
 import javalevel1.homeworks.homework8.components.MyJButton;
 import javalevel1.homeworks.homework8.components.MyJTextField;
-import javalevel1.homeworks.homework8.listeners.DigitsButtonListener;
-import javalevel1.homeworks.homework8.listeners.ClearButtonLestener;
-import javalevel1.homeworks.homework8.listeners.OperatorButtonListener;
-import javalevel1.homeworks.homework8.listeners.ResultButtonListener;
+import javalevel1.homeworks.homework8.listeners.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,7 +68,7 @@ public class CalculatorApplication extends JFrame {
         JButton devideButton = new MyJButton("/");
 
         plusButton.addActionListener(new OperatorButtonListener(this));
-        minusButton.addActionListener(new OperatorButtonListener(this));
+        minusButton.addActionListener(new MinusOperatorButtonListener(this));
         multiplyButton.addActionListener(new OperatorButtonListener(this));
         devideButton.addActionListener(new OperatorButtonListener(this));
 
