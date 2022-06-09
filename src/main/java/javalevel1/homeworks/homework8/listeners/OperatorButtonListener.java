@@ -16,13 +16,41 @@ public class OperatorButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+
         if (calculatorApplication.getFirstOperand() == null) {
             calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
             JButton btn = (JButton) actionEvent.getSource();
             calculatorApplication.setOperator(btn.getText());
             calculatorApplication.setIsNewNumber(true);
         } else {
-            // присвоить второму числу то. что на кране и выполнить вычисления
+            calculatorApplication.setSecondOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
+
+            int result = 0;
+            switch (calculatorApplication.getOperator()) {
+                case "+":
+                    result = calculatorApplication.getFirstOperand() + calculatorApplication.getSecondOperand();
+                    break;
+                case "-":
+                    result = calculatorApplication.getFirstOperand() - calculatorApplication.getSecondOperand();
+                    break;
+                case "*":
+                    result = calculatorApplication.getFirstOperand() * calculatorApplication.getSecondOperand();
+                    break;
+                case "/":
+                    result = calculatorApplication.getFirstOperand() / calculatorApplication.getSecondOperand();
+                    break;
+            }
+
+            calculatorApplication.setDisplayFormulaField(String.format("%s %s %s = ", calculatorApplication.getFirstOperand(), calculatorApplication.getOperator(), calculatorApplication.getSecondOperand()));
+
+
+            calculatorApplication.setDisplayResultField(String.valueOf(result));
+            calculatorApplication.setFirstOperand(result);
+
+            JButton btn = (JButton) actionEvent.getSource();
+            calculatorApplication.setOperator(btn.getText());
+            calculatorApplication.setIsNewNumber(true);
         }
+
     }
 }

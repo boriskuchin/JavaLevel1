@@ -24,10 +24,8 @@ public class MinusOperatorButtonListener implements ActionListener {
             calculatorApplication.setIsNewNumber(false);
 
         } else {
-            calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
-            JButton btn = (JButton) actionEvent.getSource();
-            calculatorApplication.setOperator(btn.getText());
-            calculatorApplication.setIsNewNumber(true);
+            new OperatorButtonListener(calculatorApplication).actionPerformed(actionEvent);
+            
         }
     }
 }
