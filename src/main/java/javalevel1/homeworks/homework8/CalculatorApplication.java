@@ -72,7 +72,7 @@ public class CalculatorApplication extends JFrame {
         multiplyButton.addActionListener(new OperatorButtonListener(this));
         devideButton.addActionListener(new OperatorButtonListener(this));
 
-        operatorPanel.add(plusButton);git pu
+        operatorPanel.add(plusButton);
         operatorPanel.add(minusButton);
         operatorPanel.add(multiplyButton);
         operatorPanel.add(devideButton);
