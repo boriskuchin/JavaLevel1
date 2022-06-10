@@ -14,11 +14,10 @@ public class CalculatorApplication extends JFrame {
     private Integer secondOperand = null;
     private String operator = "";
     private boolean isNewNumber = true;
-    private JTextField displayFormulaField;
 
-    public void setDisplayFormulaField(String text) {
-        this.displayFormulaField.setText(text);
-    }
+    private boolean isOperatorSet = false;
+
+    private JTextField displayFormulaField;
 
     public CalculatorApplication(){
         super();
@@ -32,6 +31,17 @@ public class CalculatorApplication extends JFrame {
 
     }
 
+    public boolean getIsOperatorSet() {
+        return isOperatorSet;
+    }
+
+    public void setIsOperatorSet(boolean operatorSet) {
+        isOperatorSet = operatorSet;
+    }
+
+    public void setDisplayFormulaField(String text) {
+        this.displayFormulaField.setText(text);
+    }
 
     public void setSecondOperand(Integer secondOperand) {
         this.secondOperand = secondOperand;
@@ -50,7 +60,6 @@ public class CalculatorApplication extends JFrame {
         return displayResultField;
     }
 
-
     public void setOperator(String operator) {
         this.operator = operator;
     }
@@ -59,8 +68,6 @@ public class CalculatorApplication extends JFrame {
         return operator;
     }
 
-
-
     public void setFirstOperand(Integer firstOperand) {
         this.firstOperand = firstOperand;
     }
@@ -68,7 +75,6 @@ public class CalculatorApplication extends JFrame {
     public Integer getFirstOperand() {
         return firstOperand;
     }
-
 
     public boolean getIsNewNumber() {
         return this.isNewNumber;

@@ -19,6 +19,7 @@ public class ClearButtonListener implements ActionListener {
         calculatorApplication.setFirstOperand(null);
         calculatorApplication.setSecondOperand(null);
         calculatorApplication.setOperator("");
-
+        calculatorApplication.setIsOperatorSet(false);
+        calculatorApplication.setIsNewNumber(true);
     }
 }

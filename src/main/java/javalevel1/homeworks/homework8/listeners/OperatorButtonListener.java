@@ -17,11 +17,17 @@ public class OperatorButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
+        if (calculatorApplication.getDisplayResultField().getText().equals("") || calculatorApplication.getDisplayResultField().getText().equals("-")) {
+            return;
+        }
+
         if (calculatorApplication.getFirstOperand() == null || calculatorApplication.getOperator().equals("")) {
             calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
             JButton btn = (JButton) actionEvent.getSource();
             calculatorApplication.setOperator(btn.getText());
+            calculatorApplication.setIsOperatorSet(true);
             calculatorApplication.setIsNewNumber(true);
+
         } else {
             calculatorApplication.setSecondOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
 
@@ -50,6 +56,7 @@ public class OperatorButtonListener implements ActionListener {
             JButton btn = (JButton) actionEvent.getSource();
             calculatorApplication.setOperator(btn.getText());
             calculatorApplication.setIsNewNumber(true);
+            calculatorApplication.setIsOperatorSet(true);
         }
 
     }

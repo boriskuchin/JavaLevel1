@@ -22,9 +22,11 @@ public class DigitsButtonListener implements ActionListener {
             calculatorApplication.setIsNewNumber(false);
             JButton button = (JButton) actionEvent.getSource();
             calculatorApplication.setDisplayResultField(calculatorApplication.getDisplayResultField().getText() + button.getText());
+            calculatorApplication.setIsOperatorSet(false);
         } else {
             JButton button = (JButton) actionEvent.getSource();
             calculatorApplication.setDisplayResultField(calculatorApplication.getDisplayResultField().getText() + button.getText());
+            calculatorApplication.setIsOperatorSet(false);
         }
     }
 }

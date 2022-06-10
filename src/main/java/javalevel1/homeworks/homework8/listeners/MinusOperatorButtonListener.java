@@ -17,10 +17,9 @@ public class MinusOperatorButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
-          if (calculatorApplication.getIsNewNumber()) {
+          if (calculatorApplication.getIsNewNumber() && (calculatorApplication.getDisplayResultField().getText().equals("") || calculatorApplication.getIsOperatorSet())) {
             calculatorApplication.setDisplayResultField("-");
             calculatorApplication.setIsNewNumber(false);
-
         } else {
             new OperatorButtonListener(calculatorApplication).actionPerformed(actionEvent);
         }
