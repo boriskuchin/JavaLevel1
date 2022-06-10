@@ -22,16 +22,16 @@ public class OperatorButtonListener implements ActionListener {
         }
 
         if (calculatorApplication.getFirstOperand() == null || calculatorApplication.getOperator().equals("")) {
-            calculatorApplication.setFirstOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
+            calculatorApplication.setFirstOperand(Double.parseDouble(calculatorApplication.getDisplayResultField().getText()));
             JButton btn = (JButton) actionEvent.getSource();
             calculatorApplication.setOperator(btn.getText());
             calculatorApplication.setIsOperatorSet(true);
             calculatorApplication.setIsNewNumber(true);
 
         } else {
-            calculatorApplication.setSecondOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
+            calculatorApplication.setSecondOperand(Double.parseDouble(calculatorApplication.getDisplayResultField().getText()));
 
-            int result = 0;
+            double result = 0;
             switch (calculatorApplication.getOperator()) {
                 case "+":
                     result = calculatorApplication.getFirstOperand() + calculatorApplication.getSecondOperand();

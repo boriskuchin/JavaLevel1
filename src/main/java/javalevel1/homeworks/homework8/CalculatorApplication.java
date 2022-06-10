@@ -10,8 +10,8 @@ import java.awt.*;
 public class CalculatorApplication extends JFrame {
 
     private JTextField displayResultField;
-    private Integer firstOperand = null;
-    private Integer secondOperand = null;
+    private Double firstOperand = null;
+    private Double secondOperand = null;
     private String operator = "";
     private boolean isNewNumber = true;
 
@@ -43,11 +43,11 @@ public class CalculatorApplication extends JFrame {
         this.displayFormulaField.setText(text);
     }
 
-    public void setSecondOperand(Integer secondOperand) {
+    public void setSecondOperand(Double secondOperand) {
         this.secondOperand = secondOperand;
     }
 
-    public Integer getSecondOperand() {
+    public Double getSecondOperand() {
         return secondOperand;
     }
 
@@ -68,11 +68,11 @@ public class CalculatorApplication extends JFrame {
         return operator;
     }
 
-    public void setFirstOperand(Integer firstOperand) {
+    public void setFirstOperand(Double firstOperand) {
         this.firstOperand = firstOperand;
     }
 
-    public Integer getFirstOperand() {
+    public Double getFirstOperand() {
         return firstOperand;
     }
 

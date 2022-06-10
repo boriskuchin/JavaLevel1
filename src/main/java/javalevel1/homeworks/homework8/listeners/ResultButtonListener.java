@@ -18,12 +18,12 @@ public class ResultButtonListener implements ActionListener {
         calculatorApplication.setIsNewNumber(true);
 
         if (!calculatorApplication.getDisplayResultField().getText().equals("")) {
-            calculatorApplication.setSecondOperand(Integer.parseInt(calculatorApplication.getDisplayResultField().getText()));
+            calculatorApplication.setSecondOperand(Double.parseDouble(calculatorApplication.getDisplayResultField().getText()));
         }
 
         if (!(calculatorApplication.getOperator().equals("")) && calculatorApplication.getSecondOperand() != null) {
 
-            int result = 0;
+            double result = 0;
             switch (calculatorApplication.getOperator()) {
                 case "+":
                     result = calculatorApplication.getFirstOperand() + calculatorApplication.getSecondOperand();
@@ -39,7 +39,7 @@ public class ResultButtonListener implements ActionListener {
                     break;
             }
 
-            calculatorApplication.setDisplayFormulaField(String.format("%s %s %s = ", calculatorApplication.getFirstOperand(), calculatorApplication.getOperator(), calculatorApplication.getSecondOperand()));
+            calculatorApplication.setDisplayFormulaField(String.format("%.4f %s %.4f = ", calculatorApplication.getFirstOperand(), calculatorApplication.getOperator(), calculatorApplication.getSecondOperand()));
 
             calculatorApplication.setOperator("");
             calculatorApplication.setIsOperatorSet(false);
@@ -47,7 +47,7 @@ public class ResultButtonListener implements ActionListener {
             calculatorApplication.setSecondOperand(null);
             calculatorApplication.setIsNewNumber(true);
 
-            calculatorApplication.setDisplayResultField(String.valueOf(result));
+            calculatorApplication.setDisplayResultField(String.format("%.4f", result));
         }
 
 
