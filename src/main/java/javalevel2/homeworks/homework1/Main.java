@@ -11,16 +11,17 @@ import javalevel2.homeworks.homework1.participants.Robot;
 public class Main {
     public static void main(String[] args) {
         Participant[] participants = {new Cat(2000, 2), new Robot(10000, 0.1), new Human(1000, 1.2)};
-        Obstacle[] obstacles = {new Wall(1.1), new RunningTrack(1000)};
+        Obstacle[] obstacles = {new Wall(1.1), new RunningTrack(1500)};
 
         for (Participant p : participants) {
             for (Obstacle o : obstacles) {
-                if (!o.isPassed(p)) {
-                    System.out.printf("Участник %s выбыл из соревнований%n", p.getName());
+                if (!p.passObstacle(o)) {
                     break;
                 }
             }
             System.out.println();
         }
+
     }
 }
+

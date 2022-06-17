@@ -1,11 +1,8 @@
 package javalevel2.homeworks.homework1.interfaces;
 
-public interface Participant extends Jumpable, Runnable {
+public interface Participant extends Runnable, Jumpable {
 
-    String getName();
 
-    int getMaxDistance();
-
-    double getMaxHeight();
+    boolean passObstacle(Obstacle obstacle);
 
 }

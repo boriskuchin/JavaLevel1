@@ -1,6 +1,7 @@
 package javalevel2.homeworks.homework1.interfaces;
 
-public interface Runnable {
-    void run();
+import javalevel2.homeworks.homework1.obstacles.RunningTrack;
 
+public interface Runnable {
+    boolean run(RunningTrack runningTrack);
 }

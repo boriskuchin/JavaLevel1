@@ -1,6 +1,7 @@
 package javalevel2.homeworks.homework1.interfaces;
 
-public interface Jumpable {
-    void jump();
+import javalevel2.homeworks.homework1.obstacles.Wall;
 
+public interface Jumpable {
+    boolean jump(Wall wall);
 }
