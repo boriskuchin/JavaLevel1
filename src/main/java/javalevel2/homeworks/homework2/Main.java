@@ -6,8 +6,8 @@ import javalevel2.homeworks.homework2.exceptionClasses.MyArraySizeException;
 public class Main {
     public static void main(String[] args) {
         String[][] arr = { {"1","2","3","4"},
-                        {"1","2","3","3","4"},
-                        {"1","2","3","w4"},
+                        {"1","2","3","4"},
+                        {"1","2","3","4"},
                         {"1","2","3","5"}};
 
         try {
@@ -20,7 +20,7 @@ public class Main {
     }
 
 
-    public static int sumFourByFourArray(String[][] stringArray) throws MyArraySizeException, NumberFormatException {
+    public static int sumFourByFourArray(String[][] stringArray) throws MyArraySizeException, MyArrayDataException {
         int sum = 0;
 
         if (stringArray.length != 4) {
