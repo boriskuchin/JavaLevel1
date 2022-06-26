@@ -62,7 +62,7 @@ public class Main {
 
         ContactList contactList = new ContactList();
 
-        contactList.add("Борис", "89261899157");
+        contactList.add("Борис", "89252399112");
         contactList.add("Анна", "123456");
         contactList.add("Борис", "12345689");
 
