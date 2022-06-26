@@ -3,6 +3,7 @@ package javalevel2.homeworks.homework3;
 public class Main {
     public static void main(String[] args) {
 
+        System.out.println("**********************************************Задание 1**********************************************");
 
         String origStr = "" +
                 "Для вас, души моей царицы,\n" +
@@ -54,15 +55,21 @@ public class Main {
                 "Поведаю теперь я свету...";
 
         WordCounter.countWords(origStr);
+        System.out.println();
+
+        System.out.println("**********************************************Задание 2**********************************************");
+
 
         ContactList contactList = new ContactList();
 
         contactList.add("Борис", "89261899157");
         contactList.add("Анна", "123456");
-        contactList.add("Борис", "123456");
+        contactList.add("Борис", "12345689");
 
-contactList.get("Борвис");
+        contactList.get("Борис");
+        contactList.get("Анна");
+        contactList.get("Андрей");
 
-
+        contactList.getAllContacts();
     }
 }
