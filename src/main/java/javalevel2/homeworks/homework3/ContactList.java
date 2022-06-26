@@ -1,17 +1,10 @@
 package javalevel2.homeworks.homework3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ContactList {
 
     private Map<String, ArrayList<String>> map = new HashMap<>();
-
-
-    public static void main(String[] args) {
-
-    }
 
     public void get(String surname) {
         if (map.containsKey(surname)) {
@@ -36,7 +29,4 @@ public class ContactList {
             System.out.printf("%s -> %s %n", entry.getKey(), entry.getValue());
         }
     }
-
-
-
 }
