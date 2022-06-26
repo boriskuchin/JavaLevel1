@@ -1,13 +1,9 @@
 package javalevel2.homeworks.homework3;
 
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
-        countUniqueWords();
-    }
 
-    private static void countUniqueWords() {
+
         String origStr = "" +
                 "Для вас, души моей царицы,\n" +
                 "Красавицы, для вас одних\n" +
@@ -57,42 +53,16 @@ public class Main {
                 "Одну я помню: сказку эту\n" +
                 "Поведаю теперь я свету...";
 
-        String stringArray[] = origStr.replaceAll(" - "," ")
-                                    .replaceAll("\\n"," ")
-                                    .replaceAll("[\\t,.;:!-]", "").toLowerCase().split("\\s");
+        WordCounter.countWords(origStr);
 
-        Set<String> setWords = new HashSet<>();
-        List<String> listWords = new ArrayList<>();
-        Map<String, Long> map = new HashMap<>();
+        ContactList contactList = new ContactList();
 
-        Collections.addAll(setWords, stringArray);
-        Collections.addAll(listWords, stringArray);
+        contactList.add("Борис", "89261899157");
+        contactList.add("Анна", "123456");
+        contactList.add("Борис", "123456");
 
-        System.out.println(String.format("Уникальных слов в тексте %s:", setWords.size()));
-        System.out.println(setWords);
-        System.out.println();
-        System.out.println(String.format("Изначальный массив слов из текста %s:", listWords.size()));
-        System.out.println(listWords);
-
-
-        for (String s : setWords) {
-            map.put(s, listWords.stream().filter(str -> s.equals(str)).count());
-        }
-        System.out.println();
-        for (Map.Entry<String, Long> entry : map.entrySet()) {
-            System.out.println(String.format("%s -> встречается %s раз(а)", entry.getKey().toUpperCase(),entry.getValue()));
-        }
-
-        long sumWordsCount = map.values().stream().mapToLong(l -> l).sum();
-
-        System.out.println(String.format("Проверка. Размер изначального массива - %s, сумма всех значений мапы - %s.",
-                                            listWords.size(),
-                                            sumWordsCount));
-
-
-
+contactList.get("Борвис");
 
 
     }
-
 }
