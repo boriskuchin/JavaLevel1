@@ -4,9 +4,7 @@ import java.util.Arrays;
 
 public class Main {
 
-
-    static final int SIZE = 10000000;
-
+    static final int SIZE = 100000001;
 
     public static void main(String[] args) {
 
@@ -49,7 +47,6 @@ public class Main {
 
         System.arraycopy(firstHalfArray, 0, arr, 0, SIZE/2);
         System.arraycopy(secondHAlfArray, 0, arr, SIZE / 2, SIZE - SIZE / 2);
-
 
         long endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime);
